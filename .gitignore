@@ -1,6 +1,7 @@
 config.js
 node_modules
 somestuff.zip
+karta.zip
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
