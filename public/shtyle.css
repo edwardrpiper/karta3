@@ -1,10 +1,9 @@
 body {
   font: 20px Helvetica, Arial;
   background: #80cfff;
-  letter-spacing: 3px;
-  word-spacing: 10px;
-  text-align:center;
-  text-transform:uppercase;
+  letter-spacing: 1px;
+  word-spacing: 5px;
+  text-align:left;
   padding-bottom: 10px;
   padding-top: 10px;
 

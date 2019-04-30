@@ -20,6 +20,8 @@ $(function () {
         googcoords[0]= parseFloat(googcoords[0],10);
         googcoords[1]= parseFloat(googcoords[1],10);
         var cordtemp = [googcoords[1],googcoords[0]];
+        var date = new Date()
+        var timestamp = String(date.getTime());
 
         console.log(googcoords);
         var geographicdata = {    /*create the GeoJSON*/
@@ -29,7 +31,8 @@ $(function () {
             "coordinates": cordtemp
           },
           "properties": {
-            "EventType": eventType
+            "EventType": eventType,
+            "date": timestamp
           }
         };
         console.log(geographicdata);
@@ -49,13 +52,22 @@ $(function () {
   socket.on('chat message', function(msg){
     console.log(msg.features);
     for (var i = 0; i < msg.features.length; i++) {
-      var coords = msg.features[i].geometry.coordinates;
-      var latLng = new google.maps.LatLng(coords[1],coords[0]);
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: map
-      });
+      if(parseInt(msg.features[i].properties.date) + 86400000 > Date.now() ){
+        var coords = msg.features[i].geometry.coordinates;
+        var latLng = new google.maps.LatLng(coords[1],coords[0]);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+        marker['infowindow'] = new google.maps.InfoWindow({
+          content: msg.features[i].properties.EventType
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          this['infowindow'].open(map, this);
+    });
     }
+  }
   });
 
 });

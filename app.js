@@ -3,14 +3,14 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var fs = require('fs');
-var mysql = require('mysql');
+/*var mysql = require('mysql');
 
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: ""
 });
-
+*/
 //con.connect(function(err) {
 //  if (err) throw err;
 //  console.log("Connected!");
