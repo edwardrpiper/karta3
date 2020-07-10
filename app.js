@@ -18,7 +18,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
-app.use(express.static(__dirname));
+app.use(express.static('public'));
 //get the html file
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
